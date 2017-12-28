@@ -18,7 +18,8 @@ __fastcall TForm1::TForm1(TComponent* Owner)
         int chk = 0, //地鼠所在位置
         total = 0, //計算分數
         count = 0; //觸發次數
-        int tm = 0;  //計算時間
+        int tm = 60;  //計算時間
+        bool en=true;
 void __fastcall TForm1::FormCreate(TObject *Sender)
 {
         DWord fstyle;
@@ -41,6 +42,9 @@ void __fastcall TForm1::FormCreate(TObject *Sender)
         Label2->Caption=total;
         Label1->Caption="分數:";
         Label3->Caption="時間:";
+        Label4->Caption=tm;
+        Label5->Width=50;
+        Label6->Caption="";
         randomize();
 }
 //---------------------------------------------------------------------------
@@ -81,13 +85,20 @@ void __fastcall TForm1::Timer1Timer(TObject *Sender)
        else if(i==7) Image8->Picture->LoadFromFile("mouse.jpg");
        else if(i==8) Image9->Picture->LoadFromFile("mouse.jpg");
        }
+
+       else if(count==15){
+       count=9;          //讓圖片重設 因Timer會先進行++運算 所以設置9
+       }
+                          
+       
 }
 //---------------------------------------------------------------------------
 
 void __fastcall TForm1::Image1Click(TObject *Sender)
 {
-        if(chk==1) {
-        count=9;     //讓圖片重設 因Timer會先進行++運算 所以設置9
+        if(chk==1&&en) {
+        Image1->Picture->LoadFromFile("mousehit.jpg");
+        count=13;
         total++;
         Label2->Caption=total;
         }
@@ -96,8 +107,9 @@ void __fastcall TForm1::Image1Click(TObject *Sender)
 
 void __fastcall TForm1::Image2Click(TObject *Sender)
 {
-        if(chk==2) {
-        count=9;
+        if(chk==2&&en) {
+        Image2->Picture->LoadFromFile("mousehit.jpg");
+        count=13;
         total++;
         Label2->Caption=total;
         }
@@ -106,8 +118,9 @@ void __fastcall TForm1::Image2Click(TObject *Sender)
 
 void __fastcall TForm1::Image3Click(TObject *Sender)
 {
-        if(chk==3) {
-        count=9;
+        if(chk==3&&en) {
+        Image3->Picture->LoadFromFile("mousehit.jpg");
+        count=13;
         total++;
         Label2->Caption=total;
         }
@@ -116,8 +129,9 @@ void __fastcall TForm1::Image3Click(TObject *Sender)
 
 void __fastcall TForm1::Image4Click(TObject *Sender)
 {
-        if(chk==4) {
-        count=9;
+        if(chk==4&&en) {
+        Image4->Picture->LoadFromFile("mousehit.jpg");
+        count=13;
         total++;
         Label2->Caption=total;
         }
@@ -126,8 +140,9 @@ void __fastcall TForm1::Image4Click(TObject *Sender)
 
 void __fastcall TForm1::Image5Click(TObject *Sender)
 {
-        if(chk==5) {
-        count=9;
+        if(chk==5&&en) {
+        Image5->Picture->LoadFromFile("mousehit.jpg");
+        count=13;
         total++;
         Label2->Caption=total;
         }
@@ -136,8 +151,9 @@ void __fastcall TForm1::Image5Click(TObject *Sender)
 
 void __fastcall TForm1::Image6Click(TObject *Sender)
 {
-        if(chk==6) {
-        count=9;
+        if(chk==6&&en) {
+        Image6->Picture->LoadFromFile("mousehit.jpg");
+        count=13;
         total++;
         Label2->Caption=total;
         }
@@ -146,8 +162,9 @@ void __fastcall TForm1::Image6Click(TObject *Sender)
 
 void __fastcall TForm1::Image7Click(TObject *Sender)
 {
-       if(chk==7) {
-        count=9;
+       if(chk==7&&en) {
+        Image7->Picture->LoadFromFile("mousehit.jpg");
+        count=13;
         total++;
         Label2->Caption=total;
         }
@@ -156,8 +173,9 @@ void __fastcall TForm1::Image7Click(TObject *Sender)
 
 void __fastcall TForm1::Image8Click(TObject *Sender)
 {
-        if(chk==8) {
-        count=9;
+        if(chk==8&&en) {
+        Image8->Picture->LoadFromFile("mousehit.jpg");
+        count=13;
         total++;
         Label2->Caption=total;
         }
@@ -166,8 +184,9 @@ void __fastcall TForm1::Image8Click(TObject *Sender)
 
 void __fastcall TForm1::Image9Click(TObject *Sender)
 {
-        if(chk==9) {
-        count=9;
+        if(chk==9&&en) {
+        Image9->Picture->LoadFromFile("mousehit.jpg");
+        count=13;
         total++;
         Label2->Caption=total;
         }
@@ -177,8 +196,18 @@ void __fastcall TForm1::Image9Click(TObject *Sender)
 void __fastcall TForm1::Timer2Timer(TObject *Sender)
 {
         //計算時間
-         tm++;
+         tm--;
+         if(tm==0) {
+                Label6->Visible=true;
+
+                Label6->Caption="  時間到  ";
+                Button2->Visible=true;
+                Timer1->Enabled=false;
+                Timer2->Enabled=false;
+                en=false;
+         }
          Label4->Caption=tm;
+
 }
 //---------------------------------------------------------------------------
 
@@ -188,11 +217,23 @@ void __fastcall TForm1::Timer2Timer(TObject *Sender)
 void __fastcall TForm1::Button1Click(TObject *Sender)
 {
         //重置紀錄
-        tm=0;
+        tm=60;
         total=0;
         //設定速度
         Timer1->Interval=Edit1->Text / 10;
 }
 //---------------------------------------------------------------------------
 
+
+void __fastcall TForm1::Button2Click(TObject *Sender)
+{
+        tm=60;
+        total=0;
+        Timer1->Enabled=true;
+        Timer2->Enabled=true;
+        en=true;
+        Label6->Visible=false;
+        Button2->Visible=false;
+}
+//---------------------------------------------------------------------------
 

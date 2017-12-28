@@ -33,6 +33,7 @@ object Form1: TForm1
     Top = 16
     Width = 97
     Height = 97
+    Cursor = crCross
     OnClick = Image1Click
   end
   object Image2: TImage
@@ -40,6 +41,7 @@ object Form1: TForm1
     Top = 16
     Width = 97
     Height = 97
+    Cursor = crCross
     OnClick = Image2Click
   end
   object Image3: TImage
@@ -47,6 +49,7 @@ object Form1: TForm1
     Top = 16
     Width = 97
     Height = 97
+    Cursor = crCross
     OnClick = Image3Click
   end
   object Image4: TImage
@@ -54,6 +57,7 @@ object Form1: TForm1
     Top = 120
     Width = 97
     Height = 97
+    Cursor = crCross
     OnClick = Image4Click
   end
   object Image5: TImage
@@ -61,6 +65,7 @@ object Form1: TForm1
     Top = 120
     Width = 97
     Height = 97
+    Cursor = crCross
     OnClick = Image5Click
   end
   object Image6: TImage
@@ -68,6 +73,7 @@ object Form1: TForm1
     Top = 120
     Width = 97
     Height = 97
+    Cursor = crCross
     OnClick = Image6Click
   end
   object Image7: TImage
@@ -75,6 +81,7 @@ object Form1: TForm1
     Top = 224
     Width = 97
     Height = 97
+    Cursor = crCross
     OnClick = Image7Click
   end
   object Image8: TImage
@@ -82,6 +89,7 @@ object Form1: TForm1
     Top = 224
     Width = 97
     Height = 97
+    Cursor = crCross
     OnClick = Image8Click
   end
   object Image9: TImage
@@ -89,6 +97,7 @@ object Form1: TForm1
     Top = 224
     Width = 97
     Height = 97
+    Cursor = crCross
     OnClick = Image9Click
   end
   object Label3: TLabel
@@ -108,17 +117,31 @@ object Form1: TForm1
   object Label5: TLabel
     Left = 16
     Top = 344
-    Width = 57
+    Width = 50
     Height = 13
     Caption = #36895#24230'(ms)'
+  end
+  object Label6: TLabel
+    Left = 136
+    Top = 368
+    Width = 89
+    Height = 16
+    Alignment = taCenter
+    Caption = 'Label6'
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -13
+    Font.Name = 'MS Sans Serif'
+    Font.Style = []
+    ParentFont = False
   end
   object Edit1: TEdit
     Left = 72
     Top = 344
     Width = 65
-    Height = 17
+    Height = 21
     TabOrder = 0
-    Text = #38928#35373'1000'
+    Text = '1000'
   end
   object Button1: TButton
     Left = 144
@@ -128,6 +151,16 @@ object Form1: TForm1
     Caption = #30906#23450
     TabOrder = 1
     OnClick = Button1Click
+  end
+  object Button2: TButton
+    Left = 216
+    Top = 368
+    Width = 65
+    Height = 25
+    Caption = #20877#29609#19968#27425
+    TabOrder = 2
+    Visible = False
+    OnClick = Button2Click
   end
   object Timer1: TTimer
     Interval = 100

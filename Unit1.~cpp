@@ -18,11 +18,11 @@ __fastcall TForm1::TForm1(TComponent* Owner)
         int chk = 0, //地鼠所在位置
         total = 0, //計算分數
         count = 0; //觸發次數
-        long time = 0;  //計算時間
+        int tm = 0;  //計算時間
 void __fastcall TForm1::FormCreate(TObject *Sender)
 {
         DWord fstyle;
-
+        //限制輸入數字
         // 宣告Edit1輸入僅為數字
         fstyle = GetWindowLong(Edit1->Handle, GWL_STYLE);
 
@@ -41,14 +41,17 @@ void __fastcall TForm1::FormCreate(TObject *Sender)
         Label2->Caption=total;
         Label1->Caption="分數:";
         Label3->Caption="時間:";
+        randomize();
 }
 //---------------------------------------------------------------------------
 
 void __fastcall TForm1::Timer1Timer(TObject *Sender)
 {
        count++;
+
        //讓地鼠延遲出現
-       if (count == 10) {
+       if (count == 10) {           //讓地鼠延遲出現
+        //重設圖片
         Image1->Picture->LoadFromFile("mousehide.jpg");
         Image2->Picture->LoadFromFile("mousehide.jpg");
         Image3->Picture->LoadFromFile("mousehide.jpg");
@@ -59,13 +62,15 @@ void __fastcall TForm1::Timer1Timer(TObject *Sender)
         Image8->Picture->LoadFromFile("mousehide.jpg");
         Image9->Picture->LoadFromFile("mousehide.jpg");
        }
-       //讓地鼠出現
-       else if (count == 12) {
+       
+       else if (count == 12) {     //讓地鼠出現
        count = 0;
-       randomize();
+
        int i;
+       //產生亂數
        i=random(9);
        chk=i+1;
+       //亂數產生地鼠位置
        if(i==0) Image1->Picture->LoadFromFile("mouse.jpg");
        else if(i==1) Image2->Picture->LoadFromFile("mouse.jpg");
        else if(i==2) Image3->Picture->LoadFromFile("mouse.jpg");
@@ -82,7 +87,7 @@ void __fastcall TForm1::Timer1Timer(TObject *Sender)
 void __fastcall TForm1::Image1Click(TObject *Sender)
 {
         if(chk==1) {
-        count=9;
+        count=9;     //讓圖片重設 因Timer會先進行++運算 所以設置9
         total++;
         Label2->Caption=total;
         }
@@ -171,11 +176,23 @@ void __fastcall TForm1::Image9Click(TObject *Sender)
 
 void __fastcall TForm1::Timer2Timer(TObject *Sender)
 {
-         time++;
-         Label4->Caption=time;
+        //計算時間
+         tm++;
+         Label4->Caption=tm;
 }
 //---------------------------------------------------------------------------
 
 
+
+
+void __fastcall TForm1::Button1Click(TObject *Sender)
+{
+        //重置紀錄
+        tm=0;
+        total=0;
+        //設定速度
+        Timer1->Interval=Edit1->Text / 10;
+}
+//---------------------------------------------------------------------------
 
 
